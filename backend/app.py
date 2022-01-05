@@ -11,8 +11,8 @@ value_vars = ["Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Obe
 averagePricePerMeter = pd.read_excel("ergebnisse_im_ueberblick_nettomiete_und_betriebskosten_mikrozensus.xlsx", header=None, usecols = 'A:K', skiprows = 21, names=names, nrows=16)
 averagePricePerMeter_json = averagePricePerMeter.to_json()
 
-averageWohnfläche = pd.read_excel("ergebnisse_im_ueberblick_wohnungsgroesse.xlsx", header=None, usecols = 'A:K', skiprows = 5, names=names, nrows=16)
-averageWohnfläche_json = averageWohnfläche.to_json()
+averageSpace = pd.read_excel("ergebnisse_im_ueberblick_wohnungsgroesse.xlsx", header=None, usecols = 'A:K', skiprows = 5, names=names, nrows=16)
+averageSpace_json = averageSpace.to_json()
 
 averageRooms = pd.read_excel("ergebnisse_im_ueberblick_wohnungsgroesse.xlsx", header=None, usecols = 'A:K', skiprows = 23, names=names, nrows=16)
 averageRooms_json = averageRooms.to_json()
@@ -24,11 +24,11 @@ with open('forest.pkl', 'rb') as fid:
 def averagePricePerMeter():
     return json.dumps(averagePricePerMeter_json)
 
-@app.route('/averageWohnfläche', methods=['GET'])
-def averageWohnfläche():
-    return json.dumps(averageWohnfläche_json)
+@app.route('/averageSpace', methods=['GET'])
+def averageSpace():
+    return json.dumps(averageSpace_json)
 
-@app.route('/averageWohnfläche', methods=['GET'])
+@app.route('/averageRooms', methods=['GET'])
 def averageRooms():
     return json.dumps(averageRooms_json)
 
@@ -38,4 +38,5 @@ def predictPrice():
     size = int(request.args.get('size'))
     return json.dumps(forest.predict(np.array([[state, size]]))[0])
     
-app.run()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)

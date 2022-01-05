@@ -1,8 +1,16 @@
 version: '1.0'
 
 services:
-  rent-dashboard:
+  rent-dashboard-frontend:
     build: .
-    image: ds20m017/rent-dashboard
+    image: ds20m017/rent-dashboard-frontend
     ports:
       - 5000:5000
+      - 5000:5000
+    environment:
+      URL: "http://127.0.0.1:80"
+  rent-dashboard-backend:
+    build: .
+    image: ds20m017/rent-dashboard-backend
+    ports:
+      - 80:80

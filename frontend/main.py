@@ -7,9 +7,14 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import pickle
+import requests
 import numpy as np
+import os
 from dash.dependencies import Input, Output, State
 
+url = os.getenv('URL')
+
+print(url)
 server = Flask(__name__)
 app = Dash(
     __name__,
@@ -100,7 +105,7 @@ app.layout = html.Div([
 )
 def update_graph(slct_state, size):
 
-    container = "The predicted price is: {}".format(forest.predict(np.array([[slct_state, size]]))[0])
+    container = "The predicted price is: {}".format(requests.get(url+"/predictPrice?state="+str(slct_state)+"&size="+str(size)).json())
     
     return container
 
@@ -110,7 +115,8 @@ def update_graph(slct_state, size):
 )
 def update_graph(slct_state):
 
-    df1 = averageLivingSpaceMelt.copy()
+    averageSpace = pd.read_json(requests.get(url+'/averageSpace').json())
+    df1 = averageSpace.melt(id_vars='Jahr', value_vars=value_vars).copy()
     
     if slct_state != 'Österreich':
         df1 = df1[df1.variable == slct_state]
@@ -135,7 +141,8 @@ def update_graph(slct_state):
 )
 def update_graph(slct_state):
 
-    df1 = averageRoomsMelt.copy()
+    averageRooms = pd.read_json(requests.get(url+'/averageRooms').json())
+    df1 = averageRooms.melt(id_vars='Jahr', value_vars=value_vars).copy()
     
     if slct_state != 'Österreich':
         df1 = df1[df1.variable == slct_state]
