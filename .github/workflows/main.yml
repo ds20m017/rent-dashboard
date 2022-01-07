@@ -20,6 +20,7 @@ jobs:
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - run: cd ./frontend
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
@@ -39,7 +40,7 @@ jobs:
           working-directory: ./frontend
           push: true
           tags: index.docker.io/ds20m017/rent-dashboard-frontend:${{ github.sha }}
-          file: ./frontend/Dockerfile
+          file: ./Dockerfile
           
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2
@@ -60,6 +61,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - run: cd ./backend
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
@@ -79,7 +81,7 @@ jobs:
           working-directory: ./backend
           push: true
           tags: index.docker.io/ds20m017/rent-dashboard-backend:${{ github.sha }}
-          file: ./backend/Dockerfile
+          file: ./Dockerfile
           
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2
