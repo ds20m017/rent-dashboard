@@ -24,12 +24,7 @@ app = Dash(
 
 names=["Jahr", "Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien"]
 value_vars=["Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien"]
-averageLivingSpace = pd.read_excel("ergebnisse_im_ueberblick_wohnungsgroesse.xlsx", header=None, usecols = 'A:K', skiprows = 5, names=names, nrows=16)
-averageLivingSpaceMelt = averageLivingSpace.melt(id_vars='Jahr', value_vars=value_vars)
-averageRooms = pd.read_excel("ergebnisse_im_ueberblick_wohnungsgroesse.xlsx", header=None, usecols = 'A:K', skiprows = 23, names=names, nrows=16)
-averageRoomsMelt = averageRooms.melt(id_vars='Jahr', value_vars=value_vars)
-with open('forest.pkl', 'rb') as fid:
-    forest = pickle.load(fid)
+
 
 app.layout = html.Div([
     html.Div(
@@ -105,7 +100,8 @@ app.layout = html.Div([
 )
 def update_graph(slct_state, size):
 
-    container = "The predicted price is: {}".format(requests.get(url+"/predictPrice?state="+str(slct_state)+"&size="+str(size)).json())
+    #container = "The predicted price is: {}".format(requests.get(url+"/predictPrice?state="+str(slct_state)+"&size="+str(size)).json())
+    container = url
     
     return container
 
