@@ -2,5 +2,5 @@ FROM python:3.8
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
-CMD [ "python", "main.py"]
+CMD [ "python", "frontend/main.py"]
 EXPOSE 5000
