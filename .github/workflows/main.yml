@@ -17,7 +17,7 @@ jobs:
   build-and-deploy-frontend:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -42,13 +42,15 @@ jobs:
           
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2
+        env:
+          BACKEND_URL: ${{ BACKEND_URL }}
         with:
           # Name of the Azure Web App
           app-name: rent-dashboard
           # Applies to Web Apps(Windows and Linux) and Web App Containers(linux). Multi container scenario not supported. Publish profile (*.publishsettings) file contents with Web Deploy secrets
           publish-profile: ${{ secrets.publish_profile_ds20m017 }}
           # Applies to Web App Containers only: Specify the fully qualified container image(s) name. For example, 'myregistry.azurecr.io/nginx:latest' or 'python:3.7.2-alpine/'. For multi-container scenario multiple container image names can be provided (multi-line separated)
-          images: index.docker.io/ds20m017/rent-dashboard-frontend:${{ github.sha }}
+          images: index.docker.io/ds20m017/rent-dashboard-frontend:${{ github.sha }} 
           
     # This workflow contains a single job called "build"
   build-and-deploy-backend:
