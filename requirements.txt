@@ -1,7 +1,0 @@
-flask
-dash
-plotly
-dash_daq
-pandas
-openpyxl
-sklearn
