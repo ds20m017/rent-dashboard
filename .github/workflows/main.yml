@@ -39,8 +39,7 @@ jobs:
         with:
           push: true
           tags: index.docker.io/ds20m017/rent-dashboard-frontend:${{ github.sha }}
-          context: ./frontend
-          file: ./Dockerfile
+          file: ./frontend/Dockerfile
           
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2
@@ -79,9 +78,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          context: ./backend
           tags: index.docker.io/ds20m017/rent-dashboard-backend:${{ github.sha }}
-          file: ./Dockerfile
+          file: ./backend/Dockerfile
           
       - name: Azure WebApp
         uses: Azure/webapps-deploy@v2
