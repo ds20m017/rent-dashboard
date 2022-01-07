@@ -100,8 +100,7 @@ app.layout = html.Div([
 )
 def update_graph(slct_state, size):
 
-    #container = "The predicted price is: {}".format(requests.get(url+"/predictPrice?state="+str(slct_state)+"&size="+str(size)).json())
-    container = url
+    container = "The predicted price is: {}".format(requests.get(url+"/predictPrice?state="+str(slct_state)+"&size="+str(size)).json())
     
     return container
 
