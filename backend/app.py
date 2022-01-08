@@ -7,7 +7,7 @@ import pickle
 app = Flask(__name__)
 
 names=["Jahr", "Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien"]
-value_vars = ["Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien"]
+
 averagePricePerMeter = pd.read_excel("ergebnisse_im_ueberblick_nettomiete_und_betriebskosten_mikrozensus.xlsx", header=None, usecols = 'A:K', skiprows = 21, names=names, nrows=16)
 averagePricePerMeter_json = averagePricePerMeter.to_json()
 
@@ -16,6 +16,14 @@ averageSpace_json = averageSpace.to_json()
 
 averageRooms = pd.read_excel("ergebnisse_im_ueberblick_wohnungsgroesse.xlsx", header=None, usecols = 'A:K', skiprows = 23, names=names, nrows=16)
 averageRooms_json = averageRooms.to_json()
+
+columns=["Jahr", "Insgesamt", "Hauseigentum", "Wohnungseigentum", "Gemeindewohnung", "Genossenschaftswohnung", "Andere Hauptmiete", "Sonstige"]
+
+medianPriceLegal = pd.read_excel("ergebnisse_im_ueberblick_gesamte_wohnkosten_eu-silc.xlsx", header=None, usecols = 'A:H', skiprows = 17, names=columns, nrows=12)
+medianPriceLegal_json = medianPriceLegal.to_json()
+
+medianPriceLegalPerMeter = pd.read_excel("ergebnisse_im_ueberblick_gesamte_wohnkosten_eu-silc.xlsx", header=None, usecols = 'A:H', skiprows = 30, names=columns, nrows=12)
+medianPriceLegalPerMeter_json = medianPriceLegalPerMeter.to_json()
 
 with open('forest.pkl', 'rb') as fid:
     forest = pickle.load(fid)
@@ -31,6 +39,14 @@ def averageSpace():
 @app.route('/averageRooms', methods=['GET'])
 def averageRooms():
     return json.dumps(averageRooms_json)
+
+@app.route('/medianPriceLegal', methods=['GET'])
+def medianPriceLegal():
+    return json.dumps(medianPriceLegal_json)
+
+@app.route('/medianPriceLegalPerMeter', methods=['GET'])
+def medianPriceLegalPerMeter():
+    return json.dumps(medianPriceLegalPerMeter_json)
 
 @app.route('/predictPrice', methods=['GET'])
 def predictPrice():

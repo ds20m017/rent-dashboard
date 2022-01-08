@@ -22,8 +22,8 @@ app = Dash(
     url_base_pathname='/'
 )
 
-names=["Jahr", "Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien"]
 value_vars=["Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien"]
+legal_vars=["Insgesamt", "Hauseigentum", "Wohnungseigentum", "Gemeindewohnung", "Genossenschaftswohnung", "Andere Hauptmiete", "Sonstige"]
 
 
 app.layout = html.Div([
@@ -90,7 +90,21 @@ app.layout = html.Div([
                  value='Österreich',
                  style={'width': "40%"}
                  ),
-            dcc.Graph(id='rooms_line', figure={})
+            dcc.Graph(id='rooms_line', figure={}),
+            dcc.Dropdown(id="slct_legal",
+                 options=[
+                     {"label": "Hauseigentum", "value": 'Hauseigentum'},
+                     {"label": "Wohnungseigentum", "value": 'Wohnungseigentum'},
+                     {"label": "Gemeindewohnung", "value": 'Gemeindewohnung'},
+                     {"label": "Genossenschaftswohnung", "value": 'Genossenschaftswohnung'},
+                     {"label": "Andere Hauptmiete", "value": 'Andere Hauptmiete'},
+                     {"label": "Sonstige", "value": 'Sonstige'},
+                     {"label": "Insgesamt", "value": 'Insgesamt'}],
+                 multi=False,
+                 value='Insgesamt',
+                 style={'width': "40%"}
+                 ),
+            dcc.Graph(id='legal_line', figure={})
     ])
 
 @app.callback(
@@ -156,6 +170,32 @@ def update_graph(slct_state):
     
     return fig
 
+
+@app.callback(
+    Output(component_id='legal_line', component_property='figure'),
+    [Input(component_id='slct_legal', component_property='value')]  
+)
+def update_graph(slct_legal):
+
+    medianPriceLegal = pd.read_json(requests.get(url+'/medianPriceLegal').json())
+    df1 = medianPriceLegal.melt(id_vars='Jahr', value_vars=legal_vars).copy()
+    
+    if slct_legal != 'Insgesamt':
+        df1 = df1[df1.variable == slct_legal]
+        
+    fig = px.line(df1, 
+                  x=df1.Jahr, 
+                  y=df1.value,
+                  color=df1.variable,
+                  title="Median Price"
+                 )
+    
+    fig.update_layout(
+                  xaxis_title="Jahr",
+                  yaxis_title="Kosten",
+                legend_title="Rechtsform")
+    
+    return fig
 
 @server.route("/")
 def my_dash_app():
