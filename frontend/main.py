@@ -3,7 +3,6 @@ from dash import Dash
 from dash import dcc
 from dash import html
 import dash_bootstrap_components as dbc
-import dash_daq as daq
 import pandas as pd
 import plotly.express as px
 import requests
