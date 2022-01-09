@@ -65,7 +65,6 @@ get_average_living_space_callback(app,url);
 get_average_rooms_callback(app,url);
 
 
-
 @app.callback(
     Output(component_id='legal_line', component_property='figure'),
     [Input(component_id='slct_legal', component_property='value')]
