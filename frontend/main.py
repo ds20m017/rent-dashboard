@@ -6,10 +6,7 @@ import dash_bootstrap_components as dbc
 import dash_daq as daq
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
-import pickle
 import requests
-import numpy as np
 import os
 from dash.dependencies import Input, Output, State
 
