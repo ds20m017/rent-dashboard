@@ -3,7 +3,9 @@ import dash_daq as daq
 from dash import dcc
 from dash import html
 
-average_living_space= html.Div([dbc.Row([
+average_living_space= html.Div([
+    dbc.Row(html.H5("Durchschnittliche Wohnfläche")),
+    dbc.Row([
         dbc.Col(
             dcc.Dropdown(id="slct_state3",
                          options=[

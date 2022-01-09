@@ -3,6 +3,7 @@ from dash import dcc
 from dash import html
 
 price= html.Div([
+                dbc.Row([html.H5("Preisentwicklung")]),
                 dbc.Row([
                     dbc.Col(
                     dcc.Dropdown(id="slct_legal",

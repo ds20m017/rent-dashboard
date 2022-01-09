@@ -4,6 +4,7 @@ from dash import html
 
 
 average_rooms= html.Div([
+                    dbc.Row(html.H5("Durchschnittliche Anzahl an Räume")),
                     dbc.Row([
                         dbc.Col([
                             dcc.Dropdown(id="slct_state2",

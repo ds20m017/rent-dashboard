@@ -24,18 +24,21 @@ app = Dash(
     external_stylesheets=[dbc.themes.CYBORG]
 )
 
-app.layout = html.Div([dbc.Row(
-    html.Div(
-        className="app-header",
-        children=[
-            html.Div('Österreich Wohnsituation', className="app-header--title")
-        ]
-    ), style={'margin-bottom': '5px'}
+app.layout = html.Div([
+    dbc.Row(
+        html.Div(
+            className="app-header",
+            children=[
+                html.Div('Österreich Wohnsituation', className="app-header--title")
+            ]
+        ), style={'margin-bottom': '5px'}
     ),
-    average_living_space,
-    average_rooms,
-    price
-])
+    dbc.Row(price, style={'margin-bottom': '15px'}),
+    dbc.Row([
+        dbc.Col(average_living_space),
+        dbc.Col(average_rooms)
+    ], style={'margin-bottom':'15px'}),
+], style={'margin-left': '15px','margin-right': '15px'})
 
 get_average_living_space_callback(app,url);
 get_average_rooms_callback(app,url);
