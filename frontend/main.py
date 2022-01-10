@@ -2,7 +2,11 @@ from flask import Flask
 from dash import Dash
 from dash import html
 import dash_bootstrap_components as dbc
+import geopandas as gpd
+import geoplot as gplt
 import os
+import plotly.express as px
+
 from components.average_living_space.average_living_space import  average_living_space;
 from components.average_living_space.average_living_space_callback import  get_average_living_space_callback;
 
@@ -12,8 +16,12 @@ from components.average_rooms.average_rooms_callback import  get_average_rooms_c
 from components.price.pice import price;
 from components.price.price_callback import  get_price_callback;
 
+from components.map.map import map;
+from components.map.map_callback import  get_map_callback;
+
 
 url = os.getenv('URL')
+#url = 'http://127.0.0.1:80'
 
 print(url)
 server = Flask(__name__)
@@ -38,11 +46,15 @@ app.layout = html.Div([
         dbc.Col(average_living_space),
         dbc.Col(average_rooms)
     ], style={'margin-bottom':'15px'}),
+    dbc.Row([
+        dbc.Col(map)
+    ], style={'margin-bottom':'15px'}),
 ], style={'margin-left': '15px','margin-right': '15px'})
 
 get_average_living_space_callback(app,url);
 get_average_rooms_callback(app,url);
 get_price_callback(app,url);
+get_map_callback(app,url);
 
 @server.route("/")
 def my_dash_app():

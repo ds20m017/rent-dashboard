@@ -3,10 +3,16 @@ import json
 from flask import Flask, request, jsonify
 import numpy as np
 import pickle
+import geopandas as gpd
+import geoplot as gplt
+from geopandas import GeoDataFrame
 
 app = Flask(__name__)
 
 names=["Jahr", "Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien"]
+
+averagePrice = pd.read_excel("ergebnisse_im_ueberblick_nettomiete_und_betriebskosten_mikrozensus.xlsx", header=None, usecols = 'A:K', skiprows = 4, names=names, nrows=16)
+averagePrice_json = averagePrice.to_json()
 
 averagePricePerMeter = pd.read_excel("ergebnisse_im_ueberblick_nettomiete_und_betriebskosten_mikrozensus.xlsx", header=None, usecols = 'A:K', skiprows = 21, names=names, nrows=16)
 averagePricePerMeter_json = averagePricePerMeter.to_json()
@@ -27,6 +33,10 @@ medianPriceLegalPerMeter_json = medianPriceLegalPerMeter.to_json()
 
 with open('forest.pkl', 'rb') as fid:
     forest = pickle.load(fid)
+    
+@app.route('/averagePrice', methods=['GET'])
+def averagePrice():
+    return json.dumps(averagePrice_json)
 
 @app.route('/averagePricePerMeter', methods=['GET'])
 def averagePricePerMeter():
