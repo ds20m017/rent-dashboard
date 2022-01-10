@@ -7,3 +7,5 @@ openpyxl
 sklearn
 requests
 dash_bootstrap_components
+geopandas
+geoplot

@@ -3,9 +3,6 @@ import json
 from flask import Flask, request, jsonify
 import numpy as np
 import pickle
-import geopandas as gpd
-import geoplot as gplt
-from geopandas import GeoDataFrame
 
 app = Flask(__name__)
 
