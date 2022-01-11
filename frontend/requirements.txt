@@ -8,7 +8,7 @@ openpyxl
 sklearn
 requests
 dash_bootstrap_components
-geos
+geos==3.7.2
 Cython
 cartopy
 geopandas
