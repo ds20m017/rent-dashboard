@@ -1,3 +1,4 @@
+numpy
 flask
 dash
 plotly
@@ -7,8 +8,8 @@ openpyxl
 sklearn
 requests
 dash_bootstrap_components
+geos
 Cython
-numpy
 cartopy
 geopandas
 geoplot
