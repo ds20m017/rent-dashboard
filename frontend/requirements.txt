@@ -8,8 +8,5 @@ openpyxl
 sklearn
 requests
 dash_bootstrap_components
-geos
-Cython
-cartopy
 geopandas
 geoplot
