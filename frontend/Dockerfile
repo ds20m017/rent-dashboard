@@ -1,6 +1,4 @@
-FROM ubuntu:20.04
-RUN apt-get install libproj-dev proj-data proj-bin
-RUN apt-get install libgeos-dev
+FROM python:3.8
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
