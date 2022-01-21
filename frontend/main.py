@@ -16,6 +16,9 @@ from components.average_rooms.average_rooms_callback import  get_average_rooms_c
 from components.price.pice import price;
 from components.price.price_callback import  get_price_callback;
 
+from components.price_based_on_space.price_based_on_space import price_based_on_space;
+from components.price_based_on_space.price_based_on_space_callback import get_price_based_on_space;
+
 from components.map.map import map;
 from components.map.map_callback import  get_map_callback;
 
@@ -33,6 +36,10 @@ app = Dash(
 )
 
 app.layout = html.Div([
+
+    dbc.Row([
+        dbc.Col(map)
+    ], style={'margin-bottom': '15px'}),
     dbc.Row(
         html.Div(
             className="app-header",
@@ -41,19 +48,20 @@ app.layout = html.Div([
             ]
         ), style={'margin-bottom': '5px'}
     ),
-    dbc.Row(price, style={'margin-bottom': '15px'}),
+    dbc.Row([
+        dbc.Col(price,width=9),
+        dbc.Col(price_based_on_space,width=3)
+    ], style={'margin-bottom': '15px'}),
     dbc.Row([
         dbc.Col(average_living_space),
         dbc.Col(average_rooms)
-    ], style={'margin-bottom':'15px'}),
-    dbc.Row([
-        dbc.Col(map)
     ], style={'margin-bottom':'15px'}),
 ], style={'margin-left': '15px','margin-right': '15px'})
 
 get_average_living_space_callback(app,url);
 get_average_rooms_callback(app,url);
 get_price_callback(app,url);
+get_price_based_on_space(app,url);
 get_map_callback(app,url);
 
 @server.route("/")

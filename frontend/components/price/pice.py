@@ -20,7 +20,7 @@ price= html.Div([
                                  style={'width': "40%"}
                                  ),
                     ),
-                ], style={'margin-bottom': '5px'}),
+                ], style={'margin-bottom': '15px'}),
                 dbc.Row([
                     dbc.Col(dcc.Graph(id='legal_line', figure={}))
                 ], style={'margin-bottom': '5px'})]

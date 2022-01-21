@@ -9,18 +9,6 @@ value_vars = ["Österreich", "Burgenland", "Kärnten", "Niederösterreich", "Obe
 
 def get_average_living_space_callback(app,url):
     @app.callback(
-        Output(component_id='container', component_property='children'),
-        [Input(component_id='slct_state3', component_property='value'),
-         Input('size', 'value')]
-    )
-    def update_graph(slct_state, size):
-        container = "The predicted price is: {}".format(
-            requests.get(url + "/predictPrice?state=" + str(slct_state) + "&size=" + str(size)).json())
-
-        return container
-
-
-    @app.callback(
         Output(component_id='living_space_line', component_property='figure'),
         [Input(component_id='slct_state1', component_property='value')]
     )
