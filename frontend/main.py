@@ -37,17 +37,17 @@ app = Dash(
 
 app.layout = html.Div([
 
-    dbc.Row([
-        dbc.Col(map)
-    ], style={'margin-bottom': '15px'}),
     dbc.Row(
         html.Div(
             className="app-header",
             children=[
-                html.Div('Österreich Wohnsituation', className="app-header--title")
+                html.Div('Wohnsituation Österreich', className="app-header--title")
             ]
         ), style={'margin-bottom': '5px'}
     ),
+    dbc.Row([
+        dbc.Col(map)
+    ], style={'margin-bottom': '15px'}),
     dbc.Row([
         dbc.Col(price,width=9),
         dbc.Col(price_based_on_space,width=3)
