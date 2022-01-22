@@ -5,13 +5,12 @@ from dash import html
 
 table_header = [ html.Thead([html.Tr([html.Th("QM"), html.Th("Preis in EUR")])])
 ]
-row1 = html.Tr([html.Td("1"), html.Td("TBA",id="qm1")])
 row2 = html.Tr([html.Td("10"), html.Td("TBA",id="qm10")])
 row3 = html.Tr([html.Td("30"), html.Td("TBA",id="qm30")])
 row4 = html.Tr([html.Td("50"), html.Td("TBA",id="qm50")])
 row5 = html.Tr([html.Td("60"), html.Td("TBA",id="qm60")])
 row6 = html.Tr([html.Td("70"), html.Td("TBA",id="qm70")])
-table_body = [html.Tbody([row1, row2, row3, row4,row5,row6])]
+table_body = [html.Tbody([row2, row3, row4,row5,row6])]
 table = dbc.Table(table_header + table_body, bordered=True)
 
 
@@ -44,13 +43,13 @@ price_based_on_space =  html.Div([
     dbc.Row([
         dcc.Slider(
             id="qm_slider",
-            min=1,
+            min=10,
             max=300,
             step=1,
             value=70,
             tooltip={"placement": "bottom", "always_visible": True},
             marks={
-                1: {'label': '1qm', 'style': {'color': '#77b0b1'}},
+                10: {'label': '10qm', 'style': {'color': '#77b0b1'}},
                 50: {'label': '50qm' , 'style': {'color': '#77b0b1'}},
                 100: {'label': '100qm', 'style': {'color': '#77b0b1'}},
                 150: {'label': '150qm', 'style': {'color': '#77b0b1'}},
