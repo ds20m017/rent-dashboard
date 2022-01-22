@@ -52,3 +52,15 @@ Folgende Endpoint existieren:
 * /predictPrice mit Variablen
   * state
   * size
+
+## Infrastructure
+
+Github Repository: https://github.com/ds20m017/rent-dashboard
+
+Github ActioN:     https://github.com/ds20m017/rent-dashboard/blob/main/docker-compose.yml
+
+Docker:             
+
+Frontend:          http://rent-dashboard.azurewebsites.net/
+
+Backend:           http://rent-dashboard-backend.azurewebsites.net/
