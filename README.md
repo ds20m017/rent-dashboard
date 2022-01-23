@@ -25,7 +25,7 @@ Die Daten für dieses Dashboard werden von eine REST API https://rent-dashboard-
 
 Das Frontend ist interaktiv und kann über http://rent-dashboard.azurewebsites.net/ erreicht werden.
 
-![image](https://user-images.githubusercontent.com/46869155/150642660-43ef15bb-4cfd-46fb-89f3-6b8c51a6f5dd.png)
+![image](https://user-images.githubusercontent.com/46869155/150685006-40b64112-370b-4213-9df6-426b18c3582f.png)
 
 Es kann ein Zoom in oder Zoom out in den Grafiken durchgeführt werden und über die Dropdowns können verschiedene Kategorien selektiert werden.
 
