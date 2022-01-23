@@ -31,7 +31,8 @@ Es kann ein Zoom in oder Zoom out in den Grafiken durchgeführt werden und über
 
 Über das ML-Modell kann eine ungefähre Vorhersage über die monatlichen Kosten, abhängig von der qm Anzahl getroffen werden:
 
-![image](https://user-images.githubusercontent.com/46869155/150642828-a855c4a4-def8-4b78-ac3c-a7d894284fe1.png)
+![image](https://user-images.githubusercontent.com/46869155/150684970-2693dbd2-4f30-4d98-92e6-f2254d07b745.png)
+
 
 Dabei kann zwischen verschiedenen Bundesländer unterschieden werden. Einige Berechnungen sind vorab schon fixiert.
 
