@@ -3,21 +3,25 @@ import dash_daq as daq
 from dash import dcc
 from dash import html
 
-table_header = [ html.Thead([html.Tr([html.Th("QM"), html.Th("Preis in EUR")])])
+table_header = [ html.Thead([html.Tr([html.Th("m²"), html.Th("Preis in €"), html.Th("Betriebskosten in €")])])
 ]
-row2 = html.Tr([html.Td("10"), html.Td("TBA",id="qm10")])
-row3 = html.Tr([html.Td("30"), html.Td("TBA",id="qm30")])
-row4 = html.Tr([html.Td("50"), html.Td("TBA",id="qm50")])
-row5 = html.Tr([html.Td("60"), html.Td("TBA",id="qm60")])
-row6 = html.Tr([html.Td("70"), html.Td("TBA",id="qm70")])
-table_body = [html.Tbody([row2, row3, row4,row5,row6])]
+row2 = html.Tr([html.Td("10"), html.Td("TBA",id="qm10"), html.Td("TBA",id="qmo10")])
+row3 = html.Tr([html.Td("30"), html.Td("TBA",id="qm30"), html.Td("TBA",id="qmo30")])
+row4 = html.Tr([html.Td("50"), html.Td("TBA",id="qm50"), html.Td("TBA",id="qmo50")])
+row5 = html.Tr([html.Td("70"), html.Td("TBA",id="qm70"), html.Td("TBA",id="qmo70")])
+row6 = html.Tr([html.Td("90"), html.Td("TBA",id="qm90"), html.Td("TBA",id="qmo90")])
+row7 = html.Tr([html.Td("110"), html.Td("TBA",id="qm110"), html.Td("TBA",id="qmo110")])
+row8 = html.Tr([html.Td("130"), html.Td("TBA",id="qm130"), html.Td("TBA",id="qmo130")])
+row9 = html.Tr([html.Td("150"), html.Td("TBA",id="qm150"), html.Td("TBA",id="qmo150")])
+row10 = html.Tr([html.Td("170"), html.Td("TBA",id="qm170"), html.Td("TBA",id="qmo170")])
+table_body = [html.Tbody([row2, row3, row4, row5, row6, row7, row8, row9, row10])]
 table = dbc.Table(table_header + table_body, bordered=True)
 
 
 price_based_on_space =  html.Div([
 
     dbc.Row(
-        html.H5("Vorraussichtliche Kosten nach qm",className="card-title")
+        html.H5("Vorraussichtliche Kosten nach m²",className="card-title")
     ),
     dbc.Row([
         dcc.Dropdown(id="slct_state3",
@@ -36,9 +40,6 @@ price_based_on_space =  html.Div([
                      value=10,
                      style={'color': 'black'}
         )
-    ], style={'margin-bottom': '15px'}),
-    dbc.Row([
-        table
     ], style={'margin-bottom': '15px'}),
     dbc.Row([
         dcc.Slider(
@@ -62,5 +63,8 @@ price_based_on_space =  html.Div([
     ], style={'margin-bottom': '20px'}),
     dbc.Row([
         html.H4(id="prediction_price", style={'color': 'white'})
-    ])
+    ]),
+    dbc.Row([
+        table
+    ], style={'margin-bottom': '15px'})
 ])

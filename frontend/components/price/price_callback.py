@@ -28,6 +28,8 @@ def get_price_callback(app,url):
         fig.update_layout(
             xaxis_title="Jahr",
             yaxis_title="Kosten",
-            legend_title="Rechtsform")
+            legend_title="Rechtsform",
+            yaxis_tickprefix = '€ '
+            )
 
         return fig

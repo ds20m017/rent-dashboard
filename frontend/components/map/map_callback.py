@@ -21,7 +21,8 @@ def get_map_callback(app,url):
         gdf = GeoDataFrame(averagePrice_melt[averagePrice_melt.variable != 'Österreich'])
         averagePriceMap = laender.merge(gdf, how='inner', left_on=['name'], right_on=['variable'])
         
-        fig = px.choropleth(averagePriceMap, geojson=averagePriceMap.geometry, locations=averagePriceMap.index, color="value")
+        fig = px.choropleth(averagePriceMap, geojson=averagePriceMap.geometry, locations=averagePriceMap.index, color="value")        
+        fig.update_layout(legend_title_text='Preis')
         fig.update_geos(fitbounds="locations", visible=False)
 
         return fig

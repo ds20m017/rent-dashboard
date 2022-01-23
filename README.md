@@ -2,7 +2,7 @@
 
 # Wohnsituation Österreich
 
-Wohnen ist ein zentrales Thema in jedem Industriestaat. Wachsende Bevöklerung bei gleichbleibende Verfügbarkeit der Fläche führt zu einer Knappheit an Wohnraum. 
+Wohnen ist ein zentrales Thema in jedem Industriestaat. Wachsende Bevölkerung bei gleichbleibende Verfügbarkeit der Fläche führt zu einer Knappheit an Wohnraum. 
 Der Wohnraum ist ein wesentlicher Bestandteil des Lebensstandard der Menschen. Insofern werden in regelmäßigen Abständen Berichte über die aktuelle Situation veröffentlicht:
 
 https://www.derstandard.at/story/2000132589738/mietenanstieg-im-vorigen-jahrzehnt-doppelt-so-stark-wie-inflation
@@ -35,7 +35,7 @@ Es kann ein Zoom in oder Zoom out in den Grafiken durchgeführt werden und über
 
 Dabei kann zwischen verschiedenen Bundesländer unterschieden werden. Einige Berechnungen sind vorab schon fixiert.
 
-Technsich befindet sich das ganze im frontend Folder.
+Technisch befindet sich das ganze im frontend Folder.
 
 ## Backend
 
@@ -46,20 +46,34 @@ Folgende Endpoint existieren:
 * /averageSpace
 * /averagePrice
 * /averagePricePerMeter
+* /averageOperatingCost
+* /averageOperatingCostPerMeter
 * /averageRooms
 * /medianPriceLegal
 * /medianPriceLegalPerMeter
 * /predictPrice mit Variablen
   * state
   * size
+* /predictOperatingCost mit Variablen
+  * state
+  * size
+  
+## Modelle
+
+Beide Modelle sind Regression Forest Modelle welche im Backend implemntiert sind und über die APIs predictPrice und predictOperatingCost angesteuert werden können.
+
+* rentRegressionForest.pkl
+* operatingCostRegressionForest.pkl
 
 ## Infrastructure
 
 Github Repository: https://github.com/ds20m017/rent-dashboard
 
-Github ActioN:     https://github.com/ds20m017/rent-dashboard/blob/main/docker-compose.yml
+Github Action:     https://github.com/ds20m017/rent-dashboard/blob/main/.github/workflows/main.yml
 
-Docker:             
+Docker Frontend:         https://github.com/ds20m017/rent-dashboard/blob/main/frontend/Dockerfile 
+
+Docker Backend:         https://github.com/ds20m017/rent-dashboard/blob/main/backend/Dockerfile    
 
 Frontend:          http://rent-dashboard.azurewebsites.net/
 

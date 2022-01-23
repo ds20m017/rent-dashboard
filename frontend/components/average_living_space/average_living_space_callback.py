@@ -29,7 +29,9 @@ def get_average_living_space_callback(app,url):
         fig.update_layout(
             xaxis_title="Jahr",
             yaxis_title="Größe",
-            legend_title="Bundesland")
+            legend_title="Bundesland",
+            yaxis_ticksuffix=" m²"
+            )
 
         return fig
 
