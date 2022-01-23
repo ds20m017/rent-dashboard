@@ -23,8 +23,8 @@ from components.map.map import map;
 from components.map.map_callback import  get_map_callback;
 
 
-#url = os.getenv('URL')
-url = 'http://127.0.0.1:80'
+url = os.getenv('URL')
+#url = 'http://127.0.0.1:80'
 
 print(url)
 server = Flask(__name__)
